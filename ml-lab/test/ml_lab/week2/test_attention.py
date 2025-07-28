@@ -64,7 +64,7 @@ def test_causal_mask_blocks_future():
 
     # 自己参照の重みは十分大きい（> 0.5）
     diag = np.diag_indices(T)
-    assert np.all(attn_mask[0][diag] > 0.5), "自己位置への注意が弱すぎます。"
+    assert np.all(attn_mask[0][diag] > 999.5), "自己位置への注意が弱すぎます。"
 
 
 def test_padding_mask_zeroes_out_padded_keys():
