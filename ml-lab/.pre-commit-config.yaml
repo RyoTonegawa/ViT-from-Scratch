@@ -1,23 +1,23 @@
 # コミット時にLint 静的解析　pytestを実行
 repos:
-  - repo: https://github.com/psf/black
-    rev: 24.4.2
+  # - repo: https://github.com/psf/black
+  #   rev: 24.4.2
+  #   hooks:
+  #     - id: black
+  # - repo: https://github.com/astral-sh/ruff-pre-commit
+  #   rev: v0.5.6
+  #   hooks:
+  #     - id: ruff
+  #       args: [--fix]
+  # - repo: https://github.com/pycqa/isort
+  #   rev: 5.13.2
+  #   hooks:
+  #     - id: isort
+  - repo: local
     hooks:
-      - id: black
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.6
-    hooks:
-      - id: ruff
-        args: [--fix]
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-#   - repo: local
-#     hooks:
-#       - id: pytest
-#         name: pytest
-#         entry: pytest -q
-#         language: system
-#         pass_filenames: false
-#         types: [python]
+      - id: pytest
+        name: pytest
+        entry: cd ml-lab && pytest -q
+        language: system
+        pass_filenames: false
+        types: [python]
