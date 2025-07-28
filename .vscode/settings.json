@@ -7,7 +7,7 @@
         "-s",
         "./ml-lab",
         "-p",
-        "*test*.py"
+        "test_*.py"
     ],
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
