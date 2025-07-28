@@ -65,3 +65,9 @@ source .venv/bin/activate
 ```bash
 python -m ml_lab.check_mps
 ```
+
+##　　ライブラリを認識しないとき
+```bash
+which python3
+```
+ででたパスをselect interpriterでえらぶ。
