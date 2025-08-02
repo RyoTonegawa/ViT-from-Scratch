@@ -96,7 +96,12 @@ def attention_mask(scores: np.ndarray, mask: np.ndarray | None) -> np.ndarray:
   - 組み合わせるとき: どちらも True=通す の規約なら、AND（論理積）で合成できる。
 """
 
-
+# 内積に基づく注意計算を行う
+# dot product = 内積
+# 内積を利用したベクトル間の類似性に基づく変換を行う
+# Queryに基づいてKeyに何らかの変更を施し、Valueを取り出す。
+# Query：任意の単語を表すベクトル
+# KeyとValueには文章を単語ごとにベクトル化して並べた行列を入れる
 def scaled_dot_product_attention(
     q: np.ndarray, k: np.ndarray, v: np.ndarray, mask: np.ndarray
 ) -> np.ndarray:
@@ -107,7 +112,9 @@ def scaled_dot_product_attention(
     assert B == Bk == Bv, "batch mismatch"
     assert Tk == Tk2, "key/value length mismatch"
     assert Dk == Dk2, "q/k depth mismatch"
-
+    # q @ np.transpose(k, (0, 2, 1)))：任意の単語と入力文章の全ベクトルに対して内積を計算
+    # np.sqrt(float(Dk)：Keyの次元数Dkのルートでスケール化したベクトルを計算
+    # Qという単語を表すベクトルがKVという文章にどれだけ類似しているかを計算している
     scores = (q @ np.transpose(k, (0, 2, 1))) / np.sqrt(float(Dk))
     scores = attention_mask(scores, mask)
     attn = stable_softmax(scores, axis=-1)
